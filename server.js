@@ -45,4 +45,6 @@ app.delete("/books", (req, res) => {
   res.json({ data: books.filter(book => book.id !== id) });
 });
 
-app.listen(8080, () => console.log("Server running at localhost:8080"));
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => console.log("Server running at localhost:" + port));
