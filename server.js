@@ -40,7 +40,7 @@ app.put("/books", (req, res) => {
   res.json({ data: books.map(book => (book.id === id ? req.body : book)) });
 });
 
-app.delete("/books", (req, res) => {
+app.delete("/books/:id", (req, res) => {
   const { id } = req.params;
   res.json({ data: books.filter(book => book.id !== id) });
 });
