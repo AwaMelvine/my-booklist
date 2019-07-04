@@ -1,6 +1,6 @@
-import express from "express";
-import uuid from "uuid";
-import bodyParser from "body-parser";
+const express = require("express");
+const uuid = require("uuid");
+const bodyParser = require("body-parser");
 
 const app = express();
 app.use(bodyParser.json());
