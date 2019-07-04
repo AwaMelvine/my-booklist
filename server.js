@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(bodyParser.json());
 
-const books = [
+let books = [
   {
     id: uuid(),
     title: "When Breath Becomes Air",
@@ -32,17 +32,20 @@ app.get("/books/:id", (req, res) => {
 });
 
 app.post("/books", (req, res) => {
-  res.send({ data: books.concat(req.body) });
+  books.push(req.body);
+  res.send({ data: books });
 });
 
 app.put("/books", (req, res) => {
   const { id } = req.params;
-  res.json({ data: books.map(book => (book.id === id ? req.body : book)) });
+  books = books.map(book => (book.id === id ? req.body : book));
+  res.json({ data: books });
 });
 
 app.delete("/books/:id", (req, res) => {
   const { id } = req.params;
-  res.json({ data: books.filter(book => book.id !== id) });
+  books = books.filter(book => book.id !== id);
+  res.json({ data: books });
 });
 
 const port = process.env.PORT || 8080;
